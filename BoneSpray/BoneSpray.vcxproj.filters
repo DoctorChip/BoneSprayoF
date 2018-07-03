@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jack\jack_interface.cpp">
+      <Filter>src\jack</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{dbec70da-f252-4303-ac16-07148feffea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\jack">
+      <UniqueIdentifier>{f3683df7-66b4-4776-8b6a-fc8bb3e174b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{30877b8c-5686-425d-8494-00e5db9aa7b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\jack">
+      <UniqueIdentifier>{b2b71254-4e90-46ec-8101-e72c8cf8a27e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\jack\jack_interface.h">
+      <Filter>inc\jack</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
