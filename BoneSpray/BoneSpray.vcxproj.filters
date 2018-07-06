@@ -10,6 +10,15 @@
     <ClCompile Include="src\jack\jack_interface.cpp">
       <Filter>src\jack</Filter>
     </ClCompile>
+    <ClCompile Include="src\scenes\SceneOne.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scenes\SceneTwo.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSceneManager\src\ofxSceneManager.cpp">
+      <Filter>addons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -27,6 +36,12 @@
     <Filter Include="inc\jack">
       <UniqueIdentifier>{b2b71254-4e90-46ec-8101-e72c8cf8a27e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scenes">
+      <UniqueIdentifier>{3317f578-7e98-4bed-b14e-6f25167fea77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\scenes">
+      <UniqueIdentifier>{d7507815-d04d-4158-888c-01d550aabba8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
@@ -34,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="inc\jack\jack_interface.h">
       <Filter>inc\jack</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\scenes\SceneOne.h">
+      <Filter>inc\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\scenes\SceneTwo.h">
+      <Filter>inc\scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

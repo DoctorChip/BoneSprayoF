@@ -102,7 +102,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>"C:\Users\Chris\Source\of_v0.10.0_vs2017_release\libs\boost\lib\vs\x64\libboost_filesystem-vc140-mt-gd-1_64.lib";"C:\Users\Chris\Source\of_v0.10.0_vs2017_release\libs\boost\lib\vs\x64\libboost_system-vc140-mt-gd-1_64.lib";"libjack.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"libjack.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Jack\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -115,7 +115,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Chris\Source\of_v0.10.0_vs2017_release\apps\BoneSpray\BoneSpray\inc;C:\Program Files (x86)\Jack\includes;C:\Program Files (x86)\Jack\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -123,8 +123,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>"libjack.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Jack\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
     </PostBuildEvent>
@@ -175,12 +175,17 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\addons\ofxSceneManager\src\ofxSceneManager.cpp" />
     <ClCompile Include="src\jack\jack_interface.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\scenes\SceneOne.cpp" />
+    <ClCompile Include="src\scenes\SceneTwo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\jack\jack_interface.h" />
+    <ClInclude Include="inc\scenes\SceneOne.h" />
+    <ClInclude Include="inc\scenes\SceneTwo.h" />
     <ClInclude Include="src\ofApp.h" />
   </ItemGroup>
   <ItemGroup>

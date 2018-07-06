@@ -1,10 +1,15 @@
+#include <string>
+#include <iostream>
 #include "jack/jack.h"
 #include "jack/types.h"
 #include "jack/jack_interface.h"
 
+#define MAX_MIDI_COUNT 64
+
 namespace jack 
 {
 	jack_port_t *in_port;
+	jack_port_t *midi_ports;
 	jack_client_t *client;
 
 	/*
@@ -31,7 +36,7 @@ namespace jack
 	void activate()
 	{
 		const char *CLIENT_NAME = "BS";
-		const char *IN_NAME = "BSIn1";
+		const char *IN_NAME = "IN_0";
 		jack_status_t *STATUS = {};
 
 		client = jack_client_open(CLIENT_NAME, JackNullOption, STATUS);
@@ -43,6 +48,28 @@ namespace jack
 		jack_on_shutdown(client, shutdown, 0);
 
 		int activate = jack_activate(client);
+	}
+
+	/*
+	 *	Creates an array of MIDI channels, length of `count`.
+	 */
+	void create_midi_array(int count)
+	{
+		if (count > MAX_MIDI_COUNT)
+		{
+			return;
+		}
+
+		jack_port_t *ports[MAX_MIDI_COUNT];
+		for (int i = 0; i < MAX_MIDI_COUNT; i++) ports[i] = NULL;
+		midi_ports = *ports;
+
+		for (int i = 0; i < count; i++)
+		{
+			std::string name = "MIDI_" + std::to_string(i);
+			jack_port_t *midi = jack_port_register(client, name.c_str(), JACK_DEFAULT_MIDI_TYPE, JackPortIsInput, 0);
+			ports[i] = midi;
+		}
 	}
 
 	/*
