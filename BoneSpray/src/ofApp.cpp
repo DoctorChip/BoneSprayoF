@@ -23,6 +23,9 @@ void ofApp::setup(){
 	sceneManager.addScene(ofPtr<ofxScene>(new SceneOne()));
 	sceneManager.addScene(ofPtr<ofxScene>(new SceneTwo()));
 	sceneManager.run();
+
+	// Jack to Scene Binding
+	// TODO
 }
 
 void ofApp::update(){

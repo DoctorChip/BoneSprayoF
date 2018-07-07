@@ -55,6 +55,9 @@ void SceneTwo::update() {
 }
 
 void SceneTwo::draw() {
+	
+	ofClear(0);
+
 	float spinX = sin(ofGetElapsedTimef()*.35f);
 	float spinY = cos(ofGetElapsedTimef()*.075f);
 

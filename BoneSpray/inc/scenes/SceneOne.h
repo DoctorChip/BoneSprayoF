@@ -1,5 +1,4 @@
 #pragma once
-
 #include "ofxSceneManager/src/ofxScene.h"
 
 class SceneOne : public ofxScene {
@@ -8,17 +7,7 @@ public:
 	void update();
 	void draw();
 
-	bool bFill;
-	bool bWireframe;
-	bool bDrawNormals;
-	bool bDrawAxes;
-	bool bDrawLights;
-	bool bMousePressed;
-	bool bSplitFaces;
-
 	ofImage texture;
-	int mode;
-
 	ofCylinderPrimitive cylinder;
 
 	ofLight pointLight;
