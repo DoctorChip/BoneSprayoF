@@ -2,6 +2,9 @@
 #include "scenes/SceneTwo.h"
 
 void SceneTwo::setup() {
+
+	setSceneDuration(0.0, 0.0);
+
 	ofSetVerticalSync(true);
 	ofBackground(20);
 

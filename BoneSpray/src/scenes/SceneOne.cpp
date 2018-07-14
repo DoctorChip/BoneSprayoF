@@ -2,9 +2,11 @@
 #include "scenes/SceneOne.h"
 
 void SceneOne::setup() {
+
+	setSceneDuration(0.0, 0.0);
+
 	ofSetVerticalSync(true);
 	ofBackground(100);
-	ofDisableArbTex();
 
 	texture.load("of.png");
 	texture.getTexture().setTextureWrap(GL_REPEAT, GL_REPEAT);

@@ -12,8 +12,8 @@
 void ofApp::setup(){
 
 	// Jack
-	//jack::activate();
-	//jack::create_midi_array(MIDI_PORT_COUNT);
+	jack::activate();
+	jack::create_midi_array(MIDI_PORT_COUNT);
 
 	// Window
 	ofHideCursor();
