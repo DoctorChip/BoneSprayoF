@@ -19,6 +19,9 @@
     <ClCompile Include="..\..\..\addons\ofxSceneManager\src\ofxSceneManager.cpp">
       <Filter>addons</Filter>
     </ClCompile>
+    <ClCompile Include="src\models\particle.cpp">
+      <Filter>src\models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -42,6 +45,12 @@
     <Filter Include="inc\scenes">
       <UniqueIdentifier>{d7507815-d04d-4158-888c-01d550aabba8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="inc\models">
+      <UniqueIdentifier>{e9ab5d9b-0957-4214-b456-097bea4e57a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\models">
+      <UniqueIdentifier>{b09c4a2e-6f07-4132-81cd-6762d3b3b85d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
@@ -55,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="inc\scenes\SceneTwo.h">
       <Filter>inc\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\models\particle.h">
+      <Filter>inc\models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

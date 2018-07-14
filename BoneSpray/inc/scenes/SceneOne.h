@@ -6,6 +6,7 @@ public:
 	void setup();
 	void update();
 	void draw();
+	void willFadeOut();
 
 	ofImage texture;
 	ofCylinderPrimitive cylinder;

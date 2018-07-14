@@ -65,9 +65,16 @@ namespace jack
 					jack_ringbuffer_write(rb, (const char*)&m, sizeof(midimsg));
 
 					size_t j;
-					for (j = 0; j < m.size && j < sizeof(m.buffer); ++j) {
-						printf(" %02x", m.buffer[j]);
-					}
+
+					//if (m.buffer[0] == 0x90) {
+					//	std::cout << "ON. ";
+					//}
+					//else {
+					//	std::cout << "OFF. ";
+					//}
+
+					//std::cout << "Note: " << int(m.buffer[1]);
+					//std::cout << " Velocity: " << int(m.buffer[2]) << std::endl;
 				}
 			}
 		}

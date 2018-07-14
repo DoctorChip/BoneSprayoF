@@ -1,9 +1,9 @@
 #include "ofxSceneManager/src/ofxScene.h"
 #include "scenes/SceneOne.h"
 
-void SceneOne::setup() {
-
-	setSceneDuration(0.0, 0.0);
+void SceneOne::setup()
+{
+	setSceneDuration(0.01, 0.01);
 
 	ofSetVerticalSync(true);
 	ofBackground(100);
@@ -31,7 +31,8 @@ void SceneOne::setup() {
 	ofSetSphereResolution(24);
 }
 
-void SceneOne::update() {
+void SceneOne::update()
+{
 	pointLight.setPosition((ofGetWidth()*.5) + cos(ofGetElapsedTimef()*.5)*(ofGetWidth()*.3), ofGetHeight() / 2, 500);
 	pointLight2.setPosition((ofGetWidth()*.5) + cos(ofGetElapsedTimef()*.15)*(ofGetWidth()*.3),
 		ofGetHeight()*.5 + sin(ofGetElapsedTimef()*.7)*(ofGetHeight()), -300);
@@ -43,8 +44,8 @@ void SceneOne::update() {
 	);
 }
 
-void SceneOne::draw() {
-
+void SceneOne::draw()
+{
 	ofClear(0);
 
 	float spinX = sin(ofGetElapsedTimef()*.35f);
@@ -59,12 +60,6 @@ void SceneOne::draw() {
 	pointLight2.enable();
 	pointLight3.enable();
 
-	// draw the outer sphere
-	material.begin();
-	ofNoFill();
-	ofDrawSphere(0, 0, max(ofGetWidth(),ofGetHeight()));
-	material.end();
-
 	float screenWidth = ofGetWidth();
 	float screenHeight = ofGetHeight();
 
@@ -78,15 +73,17 @@ void SceneOne::draw() {
 	cylinder.draw();
 	material.end();
 
-	ofNoFill();
-	ofSetColor(0, 0, 0);
-	cylinder.setScale(1.01f);
-	cylinder.drawWireframe();
-	cylinder.setScale(1.0f);
-	material.end();
-
 	ofDisableLighting();
 	ofDisableDepthTest();
 	ofFill();
 	cam.end();
+}
+
+/*
+ *	Callback event, called on scene exit
+ */
+void SceneOne::willFadeOut()
+{
+	cylinder.set(0, 0, 0);
+	std::cout << "Exit scene" << std::endl;
 }

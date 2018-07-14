@@ -13,20 +13,6 @@ class ofApp : public ofBaseApp{
 
 		bool cursorHidden;
 
-		bool bFill;
-		bool bWireframe;
-		bool bDrawLights;
-
+		int current_scene;
 		ofxSceneManager sceneManager;
-
-		ofImage texture;
-		ofSpherePrimitive sphere;
-		vector<ofMeshFace> triangles;
-
-		ofLight pointLight;
-		ofLight pointLight2;
-		ofLight pointLight3;
-		ofMaterial material;
-
-		ofCamera cam;
 };

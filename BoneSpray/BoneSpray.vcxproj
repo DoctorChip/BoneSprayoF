@@ -178,12 +178,14 @@
     <ClCompile Include="..\..\..\addons\ofxSceneManager\src\ofxSceneManager.cpp" />
     <ClCompile Include="src\jack\jack_interface.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\models\particle.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\scenes\SceneOne.cpp" />
     <ClCompile Include="src\scenes\SceneTwo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\jack\jack_interface.h" />
+    <ClInclude Include="inc\models\particle.h" />
     <ClInclude Include="inc\scenes\SceneOne.h" />
     <ClInclude Include="inc\scenes\SceneTwo.h" />
     <ClInclude Include="src\ofApp.h" />

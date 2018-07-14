@@ -12,14 +12,16 @@
 void ofApp::setup(){
 
 	// Jack
-	jack::activate();
-	jack::create_midi_array(MIDI_PORT_COUNT);
+	//jack::activate();
+	//jack::create_midi_array(MIDI_PORT_COUNT);
 
 	// Window
 	ofHideCursor();
 	cursorHidden = true;
+	ofSetFullscreen(true);
 
 	// Scene Manager
+	current_scene = 0;
 	sceneManager.addScene(ofPtr<ofxScene>(new SceneOne()));
 	sceneManager.addScene(ofPtr<ofxScene>(new SceneTwo()));
 	sceneManager.run();
@@ -48,6 +50,12 @@ void ofApp::keyPressed(int key){
 	}
 
 	else if (key >= 49 && key <= 58) {
-		sceneManager.changeScene(key - 49);
+
+		// Get scene ID - if current, do nothing
+		int scene_id = key - 49;
+		if (scene_id == current_scene) return;
+
+		current_scene = scene_id;
+		sceneManager.changeScene(scene_id);
 	}
 }
