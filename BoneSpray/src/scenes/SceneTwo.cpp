@@ -16,10 +16,10 @@ void SceneTwo::update()
 	}
 }
 
+
 void SceneTwo::draw()
 {	
-	ofSetColor(255);
-
+	// Particles
 	for (int i = 0; i<particles.size(); i++) {
 		particle &p = particles[i];
 		p.draw();
@@ -29,7 +29,7 @@ void SceneTwo::draw()
 		createParticle();
 	}
 
-	while (particles.size()>10000) {
+	while (particles.size()>5000) {
 		particles.erase(particles.begin());
 	}
 
@@ -37,7 +37,7 @@ void SceneTwo::draw()
 
 void SceneTwo::createParticle() {
 	particle p;
-	ofColor col(ofRandom(50, 225), ofRandom(50,225), ofRandom(50,225), ofRandom(0.3, 1));
+	ofColor col(ofRandom(50, 80), ofRandom(50,150), ofRandom(80,170), ofRandom(0.3, 1));
 	p.setup();
 	p.pos.set(ofRandomWidth(), ofRandomHeight());
 	p.color = col;

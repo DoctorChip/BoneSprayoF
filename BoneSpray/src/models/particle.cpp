@@ -2,14 +2,15 @@
 #include "ofMain.h"
 
 void particle::setup() {
-	vel.x = 2 * ofRandomf();
-	vel.y = 2 * ofRandomf();
+	vel.x = 5 * ofRandomf();
+	vel.y = 5 * ofRandomf();
 	angle = ofRandomf()*TWO_PI;
 	age = 0;
 }
 
 void particle::draw() {
-	ofSetColor(color, ofMap(age, 0, 2000, 255, 0, true));
+	ofSetColor(color, ofMap(age, 0, 100, 50, 255, true));
+	ofSetLineWidth(ofMap(age, 0, 100, 0, 2, true));
 	ofLine(oldpos.x, oldpos.y, pos.x, pos.y);
 }
 
