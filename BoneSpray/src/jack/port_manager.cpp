@@ -6,6 +6,8 @@
 #include "jack/midiport.h"
 #include "jack/port_manager.h"
 
+port_manager* port_manager::callback::obj;
+
 /*
  *	Callback process for JACK events - handles the audio data incoming
  */
@@ -17,13 +19,15 @@ int port_manager::process(jack_nframes_t nframes, void *arg)
 	jack_nframes_t i;
 	int c;
 
+	return 0;
+
 	// Audio
 	audio_buffer = (jack_default_audio_sample_t *) jack_port_get_buffer(in_port, nframes);
 
 	// Midi
 	for (c = 0; c < midi_port_count; c++)
 	{
-		jack_port_t* port = midi_ports[c];
+		jack_port_t* port = internal_midi_ports[c];
 		midi_buffer = (jack_default_audio_sample_t *) jack_port_get_buffer(port, nframes);
 
 		N = jack_midi_get_event_count(midi_buffer);
@@ -43,15 +47,17 @@ int port_manager::process(jack_nframes_t nframes, void *arg)
 
 				size_t j;
 
-				//if (m.buffer[0] == 0x90) {
-				//	std::cout << "ON. ";
-				//}
-				//else {
-				//	std::cout << "OFF. ";
-				//}
+				midi_port_event evt;
 
-				//std::cout << "Note: " << int(m.buffer[1]);
-				//std::cout << " Velocity: " << int(m.buffer[2]) << std::endl;
+				if (m.buffer[0] == 0x90) {
+					evt.evt = ON;
+				}
+				else {
+					evt.evt = OFF;
+				}
+
+				evt.note = m.buffer[1];
+				evt.velocity = m.buffer[2];
 			}
 		}
 	}
@@ -81,15 +87,26 @@ void port_manager::activate()
 
 	rb = jack_ringbuffer_create(RBSIZE * sizeof(midimsg));
 	client = jack_client_open(CLIENT_NAME, JackNullOption, STATUS);
+	monotonic_cnt = 0;
+
+	//Audio
 	in_port = jack_port_register(client, IN_NAME, JACK_DEFAULT_AUDIO_TYPE, JackPortIsInput, 0);
+	
+	audio_port audio;
+	audio.name = IN_NAME;
+	audio.index = 1;
+	audio_ports = new audio_port[1];
+	audio_ports[0] = audio;
 
 	jack_nframes_t nframes = jack_get_buffer_size(client);
 
-	//jack_set_process_callback(client, process, 0);
-	//jack_on_shutdown(client, shutdown, 0);
+	port_manager::callback::obj = this;
+	jack_set_process_callback(client, &callback::processCallback, 0);
+	jack_on_shutdown(client, &callback::shutdownCallback, 0);
 
 	int activate = jack_activate(client);
 }
+
 
 /*
  *	Creates an array of MIDI channels, length of `count`.
@@ -99,13 +116,20 @@ void port_manager::create_midi_array(int count)
 	if (count > MAX_MIDI_COUNT) return;
 
 	midi_port_count = count;
-	jack_port_t **midi_ports = new jack_port_t*[MAX_MIDI_COUNT];
+	jack_port_t **internal_midi_ports = new jack_port_t*[MAX_MIDI_COUNT];
+
+	midi_ports = new midi_port[midi_port_count];
 
 	for (int i = 0; i < count; i++)
 	{
 		std::string name = "MIDI_" + std::to_string(i);
 		jack_port_t *midi = jack_port_register(client, name.c_str(), JACK_DEFAULT_MIDI_TYPE, JackPortIsInput, 0);
-		midi_ports[i] = midi;
+		internal_midi_ports[i] = midi;
+
+		midi_port ext_port;
+		ext_port.name = name.c_str();
+		ext_port.index = i;
+		midi_ports[i] = ext_port;
 	}
 }
 

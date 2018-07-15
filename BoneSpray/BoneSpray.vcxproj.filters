@@ -68,6 +68,9 @@
     <ClInclude Include="inc\jack\port_manager.h">
       <Filter>inc\jack</Filter>
     </ClInclude>
+    <ClInclude Include="inc\models\port.h">
+      <Filter>inc\models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

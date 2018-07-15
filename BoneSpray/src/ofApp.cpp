@@ -5,13 +5,13 @@
 #include "scenes/SceneTwo.h"
 #pragma comment(lib, "libjack.lib")
 
-#define MIDI_PORT_COUNT 3
+port_manager ofApp::portManager;
 
 void ofApp::setup(){
 
 	// Jack
 	portManager.activate();
-	portManager.create_midi_array(MIDI_PORT_COUNT);
+	portManager.create_midi_array(midi_port_count);
 
 	// Window
 	ofHideCursor();

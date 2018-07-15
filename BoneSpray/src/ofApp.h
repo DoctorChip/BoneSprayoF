@@ -4,6 +4,7 @@
 #include "ofxSceneManager/src/ofxSceneManager.h"
 #include "jack/port_manager.h"
 
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -14,7 +15,8 @@ class ofApp : public ofBaseApp{
 
 		bool cursorHidden;
 
+		int midi_port_count = 1;
 		int current_scene;
 		ofxSceneManager sceneManager;
-		port_manager portManager;
+		static port_manager portManager;
 };
