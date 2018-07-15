@@ -6,7 +6,7 @@
 #include "jack/midiport.h"
 #include "jack/port_manager.h"
 
-port_manager* port_manager::callback::obj;
+port_manager* port_manager::obj;
 
 /*
  *	Callback process for JACK events - handles the audio data incoming
@@ -18,8 +18,6 @@ int port_manager::process(jack_nframes_t nframes, void *arg)
 	jack_nframes_t N;
 	jack_nframes_t i;
 	int c;
-
-	return 0;
 
 	// Audio
 	audio_buffer = (jack_default_audio_sample_t *) jack_port_get_buffer(in_port, nframes);
@@ -100,9 +98,9 @@ void port_manager::activate()
 
 	jack_nframes_t nframes = jack_get_buffer_size(client);
 
-	port_manager::callback::obj = this;
-	jack_set_process_callback(client, &callback::processCallback, 0);
-	jack_on_shutdown(client, &callback::shutdownCallback, 0);
+	port_manager::obj = this;
+	jack_set_process_callback(client, &processCallback, 0);
+	jack_on_shutdown(client, &shutdownCallback, 0);
 
 	int activate = jack_activate(client);
 }
@@ -116,7 +114,7 @@ void port_manager::create_midi_array(int count)
 	if (count > MAX_MIDI_COUNT) return;
 
 	midi_port_count = count;
-	jack_port_t **internal_midi_ports = new jack_port_t*[MAX_MIDI_COUNT];
+	internal_midi_ports = new jack_port_t*[MAX_MIDI_COUNT];
 
 	midi_ports = new midi_port[midi_port_count];
 

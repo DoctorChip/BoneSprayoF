@@ -24,16 +24,14 @@ public:
 	midi_port* find_midi_port(int index);
 	void close();
 
-	struct callback {
-		static port_manager* obj;
-		static int processCallback(jack_nframes_t nframes, void *arg) {
-			return obj->process(nframes, arg);
-		}
+	static port_manager* obj;
+	static int processCallback(jack_nframes_t nframes, void *arg) {
+		return obj->process(nframes, arg);
+	};
 
-		static void shutdownCallback(void *arg) {
-			obj->shutdown(arg);
-		}
-	} callback;
+	static void shutdownCallback(void *arg) {
+		obj->shutdown(arg);
+	};
 
 private:
 	
