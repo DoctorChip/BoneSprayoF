@@ -186,7 +186,6 @@
   <ItemGroup>
     <ClInclude Include="inc\jack\port_manager.h" />
     <ClInclude Include="inc\models\particle.h" />
-    <ClInclude Include="inc\models\port.h" />
     <ClInclude Include="inc\scenes\SceneOne.h" />
     <ClInclude Include="inc\scenes\SceneTwo.h" />
     <ClInclude Include="src\ofApp.h" />

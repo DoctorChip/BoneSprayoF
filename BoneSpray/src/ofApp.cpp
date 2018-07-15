@@ -13,15 +13,19 @@ void ofApp::setup(){
 	portManager.activate();
 	portManager.create_midi_array(midi_port_count);
 
+	// Pause until keypress
+	std::cout << "Jack started. Press a key to continue..." << std::endl;
+	cin.get();
+
 	// Window
 	ofHideCursor();
 	cursorHidden = true;
-	ofSetFullscreen(true);
+	//ofSetFullscreen(true);
 
 	// Scene Manager
 	current_scene = 0;
 	sceneManager.addScene(ofPtr<ofxScene>(new SceneOne()));
-	sceneManager.addScene(ofPtr<ofxScene>(new SceneTwo()));
+	sceneManager.addScene(ofPtr<ofxScene>(new SceneTwo(&portManager)));
 	sceneManager.run();
 
 	// Jack to Scene Binding

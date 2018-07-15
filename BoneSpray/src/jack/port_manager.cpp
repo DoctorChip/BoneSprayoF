@@ -18,6 +18,7 @@ int port_manager::process(jack_nframes_t nframes, void *arg)
 	jack_nframes_t N;
 	jack_nframes_t i;
 	int c;
+	int port_i;
 
 	// Audio
 	audio_buffer = (jack_default_audio_sample_t *) jack_port_get_buffer(in_port, nframes);
@@ -27,9 +28,12 @@ int port_manager::process(jack_nframes_t nframes, void *arg)
 	{
 		jack_port_t* port = internal_midi_ports[c];
 		midi_buffer = (jack_default_audio_sample_t *) jack_port_get_buffer(port, nframes);
-
+		
 		N = jack_midi_get_event_count(midi_buffer);
 		for (i = 0; i < N; ++i) {
+
+			midi_port ext_port;
+			ext_port = midi_ports[c];
 
 			jack_midi_event_t event;
 			int r;
@@ -56,13 +60,22 @@ int port_manager::process(jack_nframes_t nframes, void *arg)
 
 				evt.note = m.buffer[1];
 				evt.velocity = m.buffer[2];
+
+				// Add event to our port's buffer
+				ext_port.add_event(&evt);
 			}
 		}
 	}
 
 	monotonic_cnt += nframes;
 
-	//std::cout << *audio_buffer << std::endl;
+	// Add audio event to buffer
+	audio_port_event evt;
+	evt.buffer = audio_buffer;
+	audio_port ext_audio_port;
+	ext_audio_port = audio_ports[0];
+	ext_audio_port.add_event(&evt);
+	
 	return 0;
 }
 
@@ -129,6 +142,16 @@ void port_manager::create_midi_array(int count)
 		ext_port.index = i;
 		midi_ports[i] = ext_port;
 	}
+}
+
+port_manager::audio_port* port_manager::find_audio_port(int index)
+{
+	return &audio_ports[index];
+}
+
+port_manager::midi_port* port_manager::find_midi_port(int index)
+{
+	return &midi_ports[index];
 }
 
 /*

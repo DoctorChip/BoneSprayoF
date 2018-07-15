@@ -15,6 +15,36 @@ static class port_manager
 {
 
 public:
+	
+	enum NOTE_EVENT { ON, OFF };
+
+	typedef struct {
+		NOTE_EVENT evt;
+		int note;
+		int velocity;
+	} midi_port_event;
+
+	typedef struct {
+		jack_default_audio_sample_t *buffer;
+	} audio_port_event;
+
+	typedef struct {
+		const char* name;
+		int index;
+		audio_port_event *buffer = NULL;
+		void add_event(audio_port_event* evt) {
+			buffer = evt;
+		};
+	} audio_port;
+
+	typedef struct {
+		const char* name;
+		int index;
+		midi_port_event *buffer = NULL;
+		void add_event(midi_port_event* evt) {
+			buffer = evt;
+		};
+	} midi_port;
 
 	void activate();
 	void create_midi_array(int count);
@@ -32,6 +62,7 @@ public:
 	static void shutdownCallback(void *arg) {
 		obj->shutdown(arg);
 	};
+
 
 private:
 	

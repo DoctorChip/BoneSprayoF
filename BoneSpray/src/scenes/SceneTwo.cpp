@@ -1,5 +1,11 @@
 #include "ofxSceneManager/src/ofxScene.h"
 #include "scenes/SceneTwo.h"
+#include "jack/port_manager.h"
+
+SceneTwo::SceneTwo(port_manager* portMan)
+{
+	portManager = portMan;
+}
 
 void SceneTwo::setup()
 {
@@ -7,6 +13,8 @@ void SceneTwo::setup()
 	ofSetVerticalSync(true);
 	ofEnableAlphaBlending();
 	ofBackground(20);
+
+	midi_port = portManager->find_midi_port(0);
 }
 
 void SceneTwo::update()
@@ -19,6 +27,15 @@ void SceneTwo::update()
 
 void SceneTwo::draw()
 {	
+	if (midi_port != NULL && midi_port->buffer != NULL && midi_port->buffer->evt != NULL)
+	{
+		port_manager::NOTE_EVENT evt = midi_port->buffer->evt;
+		if (evt == port_manager::NOTE_EVENT::OFF) {
+			ofClear(20);
+			return;
+		}
+	}
+
 	// Particles
 	for (int i = 0; i<particles.size(); i++) {
 		particle &p = particles[i];
