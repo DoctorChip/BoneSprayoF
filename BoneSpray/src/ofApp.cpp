@@ -1,10 +1,8 @@
 #include "ofApp.h"
-#include "jack/jack_interface.h"
-
+#include "jack/port_manager.h"
 #include "ofxSceneManager/src/ofxSceneManager.h"
 #include "scenes/SceneOne.h"
 #include "scenes/SceneTwo.h"
-
 #pragma comment(lib, "libjack.lib")
 
 #define MIDI_PORT_COUNT 3
@@ -12,8 +10,8 @@
 void ofApp::setup(){
 
 	// Jack
-	//jack::activate();
-	//jack::create_midi_array(MIDI_PORT_COUNT);
+	portManager.activate();
+	portManager.create_midi_array(MIDI_PORT_COUNT);
 
 	// Window
 	ofHideCursor();

@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxSceneManager/src/ofxSceneManager.h"
+#include "jack/port_manager.h"
 
 class ofApp : public ofBaseApp{
 
@@ -15,4 +16,5 @@ class ofApp : public ofBaseApp{
 
 		int current_scene;
 		ofxSceneManager sceneManager;
+		port_manager portManager;
 };
