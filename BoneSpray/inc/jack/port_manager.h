@@ -31,8 +31,8 @@ public:
 	typedef struct {
 		const char* name;
 		int index;
-		audio_port_event *buffer = NULL;
-		void add_event(audio_port_event* evt) {
+		audio_port_event buffer;
+		void add_event(audio_port_event evt) {
 			buffer = evt;
 		};
 	} audio_port;
@@ -40,8 +40,8 @@ public:
 	typedef struct {
 		const char* name;
 		int index;
-		midi_port_event *buffer = NULL;
-		void add_event(midi_port_event* evt) {
+		midi_port_event buffer;
+		void add_event(midi_port_event evt) {
 			buffer = evt;
 		};
 	} midi_port;

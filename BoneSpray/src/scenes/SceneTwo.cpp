@@ -27,9 +27,9 @@ void SceneTwo::update()
 
 void SceneTwo::draw()
 {	
-	if (midi_port != NULL && midi_port->buffer != NULL && midi_port->buffer->evt != NULL)
+	if (midi_port != NULL)
 	{
-		port_manager::NOTE_EVENT evt = midi_port->buffer->evt;
+		port_manager::NOTE_EVENT evt = midi_port->buffer.evt;
 		if (evt == port_manager::NOTE_EVENT::OFF) {
 			ofClear(20);
 			return;

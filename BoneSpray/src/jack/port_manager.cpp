@@ -62,7 +62,8 @@ int port_manager::process(jack_nframes_t nframes, void *arg)
 				evt.velocity = m.buffer[2];
 
 				// Add event to our port's buffer
-				ext_port.add_event(&evt);
+				ext_port.add_event(evt);
+				midi_ports[c] = ext_port;
 			}
 		}
 	}
@@ -74,7 +75,7 @@ int port_manager::process(jack_nframes_t nframes, void *arg)
 	evt.buffer = audio_buffer;
 	audio_port ext_audio_port;
 	ext_audio_port = audio_ports[0];
-	ext_audio_port.add_event(&evt);
+	ext_audio_port.add_event(evt);
 	
 	return 0;
 }
