@@ -24,7 +24,7 @@ void ofApp::setup(){
 
 	// Scene Manager
 	current_scene = 0;
-	sceneManager.addScene(ofPtr<ofxScene>(new SceneOne()));
+	sceneManager.addScene(ofPtr<ofxScene>(new SceneOne(&portManager)));
 	sceneManager.addScene(ofPtr<ofxScene>(new SceneTwo(&portManager)));
 	sceneManager.run();
 

@@ -15,7 +15,7 @@ class ofApp : public ofBaseApp{
 
 		bool cursorHidden;
 
-		int midi_port_count = 1;
+		int midi_port_count = 2;
 		int current_scene;
 		ofxSceneManager sceneManager;
 		static port_manager portManager;

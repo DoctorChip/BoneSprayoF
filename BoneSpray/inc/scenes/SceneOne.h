@@ -1,21 +1,24 @@
 #pragma once
 #include "ofxSceneManager/src/ofxScene.h"
+#include "jack/port_manager.h"
 
 class SceneOne : public ofxScene {
 public:
+
+	SceneOne(port_manager* portMan);
+
 	void setup();
 	void update();
 	void draw();
 	void willFadeOut();
 
+	ofCamera cam;
 	ofImage texture;
-	ofCylinderPrimitive cylinder;
-
 	ofLight pointLight;
-	ofLight pointLight2;
-	ofLight pointLight3;
 	ofMaterial material;
 
-	ofVboMesh topCap, bottomCap, body;
-	ofCamera cam;
+	port_manager* portManager;
+	port_manager::midi_port* midi_port;
+
+	vector<ofBoxPrimitive> notes;
 };

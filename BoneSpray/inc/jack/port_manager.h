@@ -29,7 +29,7 @@ public:
 	} audio_port_event;
 
 	typedef struct {
-		const char* name;
+		std::string name;
 		int index;
 		audio_port_event buffer;
 		void add_event(audio_port_event evt) {
@@ -38,7 +38,7 @@ public:
 	} audio_port;
 
 	typedef struct {
-		const char* name;
+		std::string name;
 		int index;
 		midi_port_event buffer;
 		void add_event(midi_port_event evt) {
@@ -74,8 +74,8 @@ private:
 	uint64_t monotonic_cnt;
 
 	// Our ports
-	audio_port *audio_ports;
-	midi_port *midi_ports;
+	audio_port audio_ports[1];
+	midi_port midi_ports[MAX_MIDI_COUNT];
 
 
 	typedef struct {

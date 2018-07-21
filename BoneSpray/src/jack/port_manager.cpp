@@ -106,8 +106,7 @@ void port_manager::activate()
 	
 	audio_port audio;
 	audio.name = IN_NAME;
-	audio.index = 1;
-	audio_ports = new audio_port[1];
+	audio.index = 0;
 	audio_ports[0] = audio;
 
 	jack_nframes_t nframes = jack_get_buffer_size(client);
@@ -130,11 +129,9 @@ void port_manager::create_midi_array(int count)
 	midi_port_count = count;
 	internal_midi_ports = new jack_port_t*[MAX_MIDI_COUNT];
 
-	midi_ports = new midi_port[midi_port_count];
-
 	for (int i = 0; i < count; i++)
 	{
-		std::string name = "MIDI_" + std::to_string(i);
+		std::string name ( "MIDI_" + std::to_string(i));
 		jack_port_t *midi = jack_port_register(client, name.c_str(), JACK_DEFAULT_MIDI_TYPE, JackPortIsInput, 0);
 		internal_midi_ports[i] = midi;
 
